@@ -42,10 +42,11 @@ void test_int_vector(const void *function_node)
     assert_equals_int(66, int_vector_get(v, 6), function_node);
     assert_equals_int(100, int_vector_get(v, 11), function_node);
 
-    int_vector_remove(v, 6);
+    int remove = int_vector_remove(v, 6);
 
     assert_equals_int(20, v->capacity, function_node);
     assert_equals_int(11, v->size, function_node);
+    assert_equals_int(66, remove, function_node);
     assert_equals_int(60, int_vector_get(v, 6), function_node);
 
     int_vector_destroy(v);

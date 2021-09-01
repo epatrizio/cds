@@ -1,5 +1,5 @@
-#ifndef TESTS_H
-#define TESTS_H
+#ifndef TESTS_VECTOR_H
+#define TESTS_VECTOR_H
 
 #include "lib/ctestfmk.h"
 #include "../src/vector.h"
