@@ -1,3 +1,10 @@
+cds
+cds_test
+/tests/lib/
+
+# vsc
+/.vscode
+
 # Prerequisites
 *.d
 
