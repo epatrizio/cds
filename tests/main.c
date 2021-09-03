@@ -4,6 +4,7 @@
 
 #include "tests_vector.h"
 #include "tests_stack.h"
+#include "tests_linked_list.h"
 
 int main(int argc, char *argv[])
 {
@@ -18,6 +19,13 @@ int main(int argc, char *argv[])
     runTestSuite(ts_stack, argc, argv);
     displayTestSuite(ts_stack);
     deleteTestSuite(ts_stack);
+
+    TestSuite *ts_ll = createTestSuite("LINKED_LIST");
+    addTestFunction(ts_ll, "ll_empty", test_ll_empty);
+    addTestFunction(ts_ll, "ll", test_ll);
+    runTestSuite(ts_ll, argc, argv);
+    displayTestSuite(ts_ll);
+    deleteTestSuite(ts_ll);
 
     return EXIT_SUCCESS;
 }
