@@ -5,6 +5,7 @@
 #include "tests_vector.h"
 #include "tests_stack.h"
 #include "tests_linked_list.h"
+#include "tests_queue.h"
 
 int main(int argc, char *argv[])
 {
@@ -26,6 +27,13 @@ int main(int argc, char *argv[])
     runTestSuite(ts_ll, argc, argv);
     displayTestSuite(ts_ll);
     deleteTestSuite(ts_ll);
+
+    TestSuite *ts_queue = createTestSuite("QUEUE");
+    addTestFunction(ts_queue, "queue_empty", test_queue_empty);
+    addTestFunction(ts_queue, "queue", test_queue);
+    runTestSuite(ts_queue, argc, argv);
+    displayTestSuite(ts_queue);
+    deleteTestSuite(ts_queue);
 
     return EXIT_SUCCESS;
 }
