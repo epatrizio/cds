@@ -3,12 +3,22 @@
 
 #include "tests_vector.h"
 
+void test_char_vector_empty(const void *function_node)
+{
+    char_vector *v = char_vector_create();
+
+    assert_true(char_vector_is_empty(v), function_node);
+
+    char_vector_destroy(v);
+}
+
 void test_int_vector(const void *function_node)
 {
     int_vector *v = int_vector_create();
     int_vector_add(v, 0, 0);
     int_vector_add(v, 1, 10);
 
+    assert_false(int_vector_is_empty(v), function_node);
     assert_equals_int(10, v->capacity, function_node);
     assert_equals_int(2, v->size, function_node);
 

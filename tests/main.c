@@ -10,12 +10,14 @@
 int main(int argc, char *argv[])
 {
     TestSuite *ts_vector = createTestSuite("VECTOR");
+    addTestFunction(ts_vector, "char_vector_empty", test_char_vector_empty);
     addTestFunction(ts_vector, "int_vector", test_int_vector);
     runTestSuite(ts_vector, argc, argv);
     displayTestSuite(ts_vector);
     deleteTestSuite(ts_vector);
 
     TestSuite *ts_stack = createTestSuite("STACK");
+    addTestFunction(ts_stack, "char_stack_empty", test_char_stack_empty);
     addTestFunction(ts_stack, "int_stack", test_int_stack);
     runTestSuite(ts_stack, argc, argv);
     displayTestSuite(ts_stack);

@@ -1,3 +1,4 @@
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -17,6 +18,12 @@
     {                                       \
         free(v->elts);                      \
         free(v);                            \
+    }
+
+#define vector_is_empty_fct(T)              \
+    bool T##_vector_is_empty(T##_vector* v) \
+    {                                       \
+        return (v->size == 0);              \
     }
 
 #define vector_add_fct(T)                                           \
@@ -67,6 +74,7 @@
 #define vector_init_fct(T)  \
     vector_create_fct(T)    \
     vector_destroy_fct(T)   \
+    vector_is_empty_fct(T)  \
     vector_add_fct(T)       \
     vector_remove_fct(T)    \
     vector_get_fct(T)       \

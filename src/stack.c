@@ -1,3 +1,4 @@
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -15,6 +16,12 @@
         T##_vector_destroy(s);              \
     }
 
+#define stack_is_empty_fct(T)               \
+    bool T##_stack_is_empty(T##_stack* s)   \
+    {                                       \
+        return T##_vector_is_empty(s);      \
+    }
+
 #define stack_push_fct(T)                           \
     void T##_stack_push(T##_stack* s, const T elt)  \
     {                                               \
@@ -30,6 +37,7 @@
 #define stack_init_fct(T)   \
     stack_create_fct(T)     \
     stack_destroy_fct(T)    \
+    stack_is_empty_fct(T)   \
     stack_push_fct(T)       \
     stack_pop_fct(T)
 

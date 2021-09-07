@@ -14,6 +14,7 @@
 #define vector_create_sign(T)                           \
     T##_vector *T##_vector_create();                    \
     void T##_vector_destroy(T##_vector*);               \
+    bool T##_vector_is_empty(T##_vector*);              \
     void T##_vector_add(T##_vector*, size_t, const T);  \
     T T##_vector_remove(T##_vector*, size_t);           \
     T T##_vector_get(const T##_vector*, size_t);        \
