@@ -12,6 +12,39 @@ void test_char_vector_empty(const void *function_node)
     char_vector_destroy(v);
 }
 
+void test_char_vector_set(const void *function_node)
+{
+    char_vector *v = char_vector_create();
+
+    char_vector_set(v, 0, '0');
+
+    assert_equals_int(10, v->capacity, function_node);
+    assert_equals_int(1, v->size, function_node);
+    assert_equals_char('0', char_vector_get(v, 0), function_node);
+
+    char_vector_set(v, 10, '-');
+    char_vector_set(v, 100, '-');
+    char_vector_set(v, 5, '5');
+
+    assert_equals_int(10, v->capacity, function_node);
+    assert_equals_int(6, v->size, function_node);
+    assert_equals_char('0', char_vector_get(v, 0), function_node);
+    assert_equals_char('5', char_vector_get(v, 5), function_node);
+
+    char_vector_set(v, 0, 'N');
+    char_vector_set(v, 1, '1');
+    char_vector_set(v, 7, '7');
+
+    assert_equals_int(10, v->capacity, function_node);
+    assert_equals_int(8, v->size, function_node);
+    assert_equals_char('N', char_vector_get(v, 0), function_node);
+    assert_equals_char('1', char_vector_get(v, 1), function_node);
+    assert_equals_char('5', char_vector_get(v, 5), function_node);
+    assert_equals_char('7', char_vector_get(v, 7), function_node);
+
+    char_vector_destroy(v);
+}
+
 void test_int_vector(const void *function_node)
 {
     int_vector *v = int_vector_create();

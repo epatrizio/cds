@@ -67,7 +67,8 @@
 #define vector_set_fct(T)                                           \
     void T##_vector_set(T##_vector* v, size_t index, const T elt)   \
     {                                                               \
-        if (index > v->size) return;                                \
+        if (index >= v->capacity) return;                           \
+        if (index >= v->size) v->size = index+1;                    \
         v->elts[index] = elt;                                       \
     }
 
