@@ -5,7 +5,7 @@
 #include "../src/vector.h"
 
 void test_char_vector_empty(const void*);
-void test_char_vector_set(const void*);
+void test_double_vector_resize(const void*);
 void test_int_vector(const void*);
 
 #endif

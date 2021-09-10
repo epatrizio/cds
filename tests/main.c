@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
 {
     TestSuite *ts_vector = createTestSuite("VECTOR");
     addTestFunction(ts_vector, "char_vector_empty", test_char_vector_empty);
-    addTestFunction(ts_vector, "char_vector_set", test_char_vector_set);
+    addTestFunction(ts_vector, "double_vector_resize", test_double_vector_resize);
     addTestFunction(ts_vector, "int_vector", test_int_vector);
     runTestSuite(ts_vector, argc, argv);
     displayTestSuite(ts_vector);
@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
 
     TestSuite *ts_stack = createTestSuite("STACK");
     addTestFunction(ts_stack, "char_stack_empty", test_char_stack_empty);
-    addTestFunction(ts_stack, "int_stack", test_int_stack);
+    addTestFunction(ts_stack, "float_stack", test_float_stack);
     runTestSuite(ts_stack, argc, argv);
     displayTestSuite(ts_stack);
     deleteTestSuite(ts_stack);

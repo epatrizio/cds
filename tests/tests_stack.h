@@ -6,6 +6,6 @@
 #include "../src/stack.h"
 
 void test_char_stack_empty(const void*);
-void test_int_stack(const void*);
+void test_float_stack(const void*);
 
 #endif
