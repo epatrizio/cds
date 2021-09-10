@@ -5,7 +5,7 @@
 
 void test_ll_empty(const void *function_node)
 {
-    linked_list *ll = linked_list_create();
+    linked_list ll = linked_list_create();
 
     assert_true(linked_list_is_empty(ll), function_node);
 
@@ -14,7 +14,7 @@ void test_ll_empty(const void *function_node)
 
 void test_ll(const void *function_node)
 {
-    linked_list *ll = linked_list_create();
+    linked_list ll = linked_list_create();
 
     linked_list_add_first(ll, "insert 1 first");
     linked_list_add_first(ll, "insert 2 first");

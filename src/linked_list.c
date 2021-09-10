@@ -5,9 +5,9 @@
 
 #include "linked_list.h"
 
-linked_list* linked_list_create()
+linked_list linked_list_create()
 {
-    linked_list *empty_ll = malloc(sizeof(linked_list));
+    linked_list empty_ll = malloc(sizeof(linked_list));
     empty_ll->first = NULL;
     empty_ll->last = NULL;
     empty_ll->size = 0;
@@ -15,7 +15,7 @@ linked_list* linked_list_create()
     return empty_ll;
 }
 
-void linked_list_destroy(linked_list *ll)
+void linked_list_destroy(linked_list ll)
 {
     linked_list_elt *current_elt = ll->first;
     while (current_elt != NULL) {
@@ -27,12 +27,12 @@ void linked_list_destroy(linked_list *ll)
     free(ll);
 }
 
-bool linked_list_is_empty(linked_list *ll)
+bool linked_list_is_empty(linked_list ll)
 {
     return (ll->size == 0);
 }
 
-void linked_list_add_first(linked_list *ll, const char *string)
+void linked_list_add_first(linked_list ll, const char *string)
 {
     char *w = malloc(strlen(string)+1);
     strcpy(w, string);
@@ -51,7 +51,7 @@ void linked_list_add_first(linked_list *ll, const char *string)
     ll->size++;
 }
 
-char* linked_list_remove_first(linked_list *ll)
+char* linked_list_remove_first(linked_list ll)
 {
     if (linked_list_is_empty(ll)) return NULL;
 
@@ -76,7 +76,7 @@ char* linked_list_remove_first(linked_list *ll)
     return w;
 }
 
-void linked_list_add_last(linked_list *ll, const char *string)
+void linked_list_add_last(linked_list ll, const char *string)
 {
     char *w = malloc(strlen(string)+1);
     strcpy(w, string);
@@ -95,7 +95,7 @@ void linked_list_add_last(linked_list *ll, const char *string)
     ll->size++;
 }
 
-char* linked_list_remove_last(linked_list *ll)
+char* linked_list_remove_last(linked_list ll)
 {
     if (linked_list_is_empty(ll)) return NULL;
 

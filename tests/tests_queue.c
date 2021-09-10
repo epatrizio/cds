@@ -5,7 +5,7 @@
 
 void test_queue_empty(const void *function_node)
 {
-    queue *q = queue_create();
+    queue q = queue_create();
 
     assert_true(queue_is_empty(q), function_node);
 
@@ -14,7 +14,7 @@ void test_queue_empty(const void *function_node)
 
 void test_queue(const void *function_node)
 {
-    queue *q = queue_create();
+    queue q = queue_create();
 
     queue_push(q, "push 1");
     queue_push(q, "push 2");
