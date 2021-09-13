@@ -17,6 +17,12 @@ int main(int argc, char *argv[])
     displayTestSuite(ts_vector);
     deleteTestSuite(ts_vector);
 
+    TestSuite *ts_cs_vector = createTestSuite("CUSTOM_STRUCT_VECTOR");
+    addTestFunction(ts_cs_vector, "custom_struct_vector", test_custom_struct_vector);
+    runTestSuite(ts_cs_vector, argc, argv);
+    displayTestSuite(ts_cs_vector);
+    deleteTestSuite(ts_cs_vector);
+
     TestSuite *ts_stack = createTestSuite("STACK");
     addTestFunction(ts_stack, "char_stack_empty", test_char_stack_empty);
     addTestFunction(ts_stack, "float_stack", test_float_stack);

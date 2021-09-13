@@ -1,3 +1,4 @@
+#include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -91,4 +92,39 @@ void test_int_vector(const void *function_node)
     assert_equals_int(100, int_vector_get(v, 10), function_node);
 
     int_vector_destroy(v);
+}
+
+vector_init_fct(custom_struct)
+
+void test_custom_struct_vector(const void *function_node)
+{
+    custom_struct_vector v = custom_struct_vector_create();
+
+    assert_true(custom_struct_vector_is_empty(v), function_node);
+    assert_equals_int(MIN_CAPACITY, v->capacity, function_node);
+    assert_equals_int(0, custom_struct_vector_size(v), function_node);
+
+    custom_struct cs_1 = {1, "abcd"};
+    custom_struct_vector_add(v, 0, cs_1);
+
+    custom_struct cs_2 = {2, "efgh"};
+    custom_struct_vector_add(v, 1, cs_2);
+
+    assert_equals_int(2, custom_struct_vector_size(v), function_node);
+
+    custom_struct tmp = custom_struct_vector_get(v, 0);
+    assert_equals_int(1, tmp.idx, function_node);
+    assert_equals_charp("abcd", tmp.string, function_node);
+
+    tmp = custom_struct_vector_get(v, 1);
+    assert_equals_int(2, tmp.idx, function_node);
+    assert_equals_charp("efgh", tmp.string, function_node);
+
+    tmp = custom_struct_vector_remove(v, 0);
+
+    assert_equals_int(1, custom_struct_vector_size(v), function_node);
+    assert_equals_int(1, tmp.idx, function_node);
+    assert_equals_charp("abcd", tmp.string, function_node);
+
+    custom_struct_vector_destroy(v);
 }
