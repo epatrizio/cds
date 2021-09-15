@@ -6,6 +6,7 @@
 #include "tests_stack.h"
 #include "tests_linked_list.h"
 #include "tests_queue.h"
+#include "tests_hash_set.h"
 
 int main(int argc, char *argv[])
 {
@@ -43,6 +44,12 @@ int main(int argc, char *argv[])
     runTestSuite(ts_queue, argc, argv);
     displayTestSuite(ts_queue);
     deleteTestSuite(ts_queue);
+
+    TestSuite *ts_hs = createTestSuite("HASH_SET");
+    addTestFunction(ts_hs, "hash_set", test_hash_set);
+    runTestSuite(ts_hs, argc, argv);
+    displayTestSuite(ts_hs);
+    deleteTestSuite(ts_hs);
 
     return EXIT_SUCCESS;
 }
