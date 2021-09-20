@@ -7,6 +7,7 @@
 #include "tests_linked_list.h"
 #include "tests_queue.h"
 #include "tests_hash_set.h"
+#include "tests_hash_map.h"
 
 int main(int argc, char *argv[])
 {
@@ -50,6 +51,12 @@ int main(int argc, char *argv[])
     runTestSuite(ts_hs, argc, argv);
     displayTestSuite(ts_hs);
     deleteTestSuite(ts_hs);
+
+    TestSuite *ts_hm = createTestSuite("HASH_MAP");
+    addTestFunction(ts_hm, "hash_map", test_hash_map);
+    runTestSuite(ts_hm, argc, argv);
+    displayTestSuite(ts_hm);
+    deleteTestSuite(ts_hm);
 
     return EXIT_SUCCESS;
 }
