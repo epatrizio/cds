@@ -6,14 +6,8 @@
 #include <string.h>
 
 #include "vector.h"
+#include "hash_utils.h"
 #include "hash_set.h"
-
-unsigned long hash_code_modulo(const char *string, size_t modulo, size_t (*hash_fct)(const char *str))
-{
-    if (modulo == 0) return 0;
-
-    return (*hash_fct)(string) % modulo;
-}
 
 hash_set resize_hash_set(hash_set hs, size_t (*hash_fct)(const char *str))
 {
