@@ -39,8 +39,15 @@ hash_map hash_map_create(size_t initial_size)
 
 void hash_map_destroy(hash_map hm)
 {
-    for (unsigned int i=0 ; i<hm_bucket_vector_size(hm) ; i++)
-        hm_elt_vector_destroy(hm_bucket_vector_get(hm, i));
+    for (unsigned int i=0 ; i<hm_bucket_vector_size(hm) ; i++) {
+        hm_bucket b = hm_bucket_vector_get(hm, i);
+        for (unsigned int j=0 ; j<hm_elt_vector_size(b) ; j++) {
+            hm_elt elt = hm_elt_vector_get(b, j);
+            free(elt.key);
+            free(elt.value);
+        }
+        hm_elt_vector_destroy(b);
+    }
 
     hm_bucket_vector_destroy(hm);
 }

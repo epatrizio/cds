@@ -40,8 +40,14 @@ hash_set hash_set_create(size_t initial_size)
 
 void hash_set_destroy(hash_set hs)
 {
-    for (unsigned int i=0 ; i<hs_bucket_vector_size(hs) ; i++)
-        hs_elt_vector_destroy(hs_bucket_vector_get(hs, i));
+    for (unsigned int i=0 ; i<hs_bucket_vector_size(hs) ; i++) {
+        hs_bucket b = hs_bucket_vector_get(hs, i);
+        for (unsigned int j=0 ; j<hs_elt_vector_size(b) ; j++) {
+            hs_elt elt = hs_elt_vector_get(b, j);
+            free(elt.string);
+        }
+        hs_elt_vector_destroy(b);
+    }
 
     hs_bucket_vector_destroy(hs);
 }
