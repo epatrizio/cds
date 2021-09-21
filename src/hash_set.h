@@ -2,7 +2,7 @@
 #define HASH_SET_H
 
 #define HASH_SET_INITIAL_SIZE 10
-#define BUCKET_MAX_SIZE 2
+#define HASH_SET_BUCKET_MAX_SIZE 2
 
 typedef struct _hs_elt {
    char *string;
@@ -10,11 +10,11 @@ typedef struct _hs_elt {
 
 vector_init(hs_elt)  // Will contain elts with same hash_code
 
-typedef hs_elt_vector bucket;
+typedef hs_elt_vector hs_bucket;
 
-vector_init(bucket)  // The HashSet based on a vector (A vector of buckets)
+vector_init(hs_bucket)  // The HashSet based on a vector (A vector of buckets)
 
-typedef bucket_vector hash_set;
+typedef hs_bucket_vector hash_set;
 
 hash_set hash_set_create(size_t);
 void hash_set_destroy(hash_set);
