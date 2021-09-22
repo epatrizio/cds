@@ -1,0 +1,5 @@
+generic.label.hello|Bonjour, monde!
+generic.label.bye|Salut!
+generic.label.address|Adresse postale
+generic.label.email|Courriel
+generic.message.ok|Voici le message quand l'opération effectuée est OK

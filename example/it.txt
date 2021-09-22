@@ -1,0 +1,2 @@
+generic.label.hello|Ciao, mondo!
+generic.label.bye|Salve!

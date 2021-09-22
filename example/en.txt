@@ -1,0 +1,5 @@
+generic.label.hello|Hello, world!
+generic.label.bye|Bye!
+generic.label.address|Postal address
+generic.label.email|Email address
+generic.message.ok|This is the ok message
