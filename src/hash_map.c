@@ -16,7 +16,7 @@ hash_map resize_hash_map(hash_map hm, size_t (*hash_fct)(const char *str))
         hm_bucket b = hm_bucket_vector_get(hm, i);
         for (unsigned int j=0 ; j<hm_elt_vector_size(b) ; j++) {
             hm_elt elt = hm_elt_vector_get(b, j);
-            hash_map_add(new_hm, elt.key, elt.value, *hash_fct);
+            new_hm = hash_map_add(new_hm, elt.key, elt.value, *hash_fct);
         }
     }
 
