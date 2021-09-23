@@ -19,7 +19,7 @@ intl_component intl_create();
 void intl_destroy(intl_component);
 char* intl_translate(intl_component, const char*, const char*);
 char* intl_current_translate(intl_component, const char*);
-void intl_add_translation(intl_component, const char*, const char*, const char*);
-void intl_load_locale_file(intl_component, const char*, const char*);
+intl_component intl_add_translation(intl_component, const char*, const char*, const char*);
+intl_component intl_load_locale_file(intl_component, const char*, const char*);
 
 #endif

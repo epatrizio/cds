@@ -1,2 +1,12 @@
+key.0|traduzione 0
+key.1|traduzione 1
+key.2|traduzione 2
+key.3|traduzione 3
+key.4|traduzione 4
+key.5|traduzione 5
+key.6|traduzione 6
+key.7|traduzione 7
+key.8|traduzione 8
+key.9|traduzione 9
 generic.label.hello|Ciao, mondo!
 generic.label.bye|Salve!

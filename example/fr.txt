@@ -1,5 +1,14 @@
+key.0|traduction 0
+key.1|traduction 1
+key.2|traduction 2
+key.3|traduction 3
+key.4|traduction 4
+key.5|traduction 5
+key.6|traduction 6
+key.7|traduction 7
+key.8|traduction 8
+key.9|traduction 9
 generic.label.hello|Bonjour, monde!
 generic.label.bye|Salut!
 generic.label.address|Adresse postale
 generic.label.email|Courriel
-generic.message.ok|Voici le message quand l'opération effectuée est OK

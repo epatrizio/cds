@@ -74,22 +74,24 @@ char* intl_current_translate(intl_component intl, const char *key)
     return intl_translate(intl, key, current_locale);
 }
 
-void intl_add_translation(intl_component intl, const char *key, const char *locale, const char *translation)
+intl_component intl_add_translation(intl_component intl, const char *key, const char *locale, const char *translation)
 {
     char *locale_key = generate_locale_key(key, locale);
 
-    hash_map_add(intl, locale_key, translation, (size_t (*)(const char*))(intl_hash_code));
+    intl = hash_map_add(intl, locale_key, translation, (size_t (*)(const char*))(intl_hash_code));
 
     free(locale_key);
+
+    return intl;
 }
 
-void intl_load_locale_file(intl_component intl, const char *file_name, const char *locale)
+intl_component intl_load_locale_file(intl_component intl, const char *file_name, const char *locale)
 {
     FILE *fp;
     fp = fopen(file_name,"r");
     if (fp == NULL) {
         perror("Unable to open file!");
-        return;
+        return intl;
     }
 
     unsigned short int i;
@@ -103,7 +105,7 @@ void intl_load_locale_file(intl_component intl, const char *file_name, const cha
             if (i == 0) key = token;
             if (i == 1) {
                 translation = token;
-                intl_add_translation(intl, key, locale, translation);
+                intl = intl_add_translation(intl, key, locale, translation);
             }
             token = strtok(NULL, "|");
             i++;
@@ -111,4 +113,6 @@ void intl_load_locale_file(intl_component intl, const char *file_name, const cha
     }
 
     fclose(fp);
+
+    return intl;
 }

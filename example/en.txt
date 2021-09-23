@@ -1,3 +1,13 @@
+key.0|translation 0
+key.1|translation 1
+key.2|translation 2
+key.3|translation 3
+key.4|translation 4
+key.5|translation 5
+key.6|translation 6
+key.7|translation 7
+key.8|translation 8
+key.9|translation 9
 generic.label.hello|Hello, world!
 generic.label.bye|Bye!
 generic.label.address|Postal address
