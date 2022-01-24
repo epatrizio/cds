@@ -4,6 +4,7 @@
 
 #include "tests_vector.h"
 #include "tests_stack.h"
+#include "tests_priority_queue.h"
 #include "tests_linked_list.h"
 #include "tests_queue.h"
 #include "tests_hash_set.h"
@@ -31,6 +32,14 @@ int main(int argc, char *argv[])
     runTestSuite(ts_stack, argc, argv);
     displayTestSuite(ts_stack);
     deleteTestSuite(ts_stack);
+
+    TestSuite *ts_pq = createTestSuite("PRIORITY_QUEUE");
+    addTestFunction(ts_pq, "char_pq_empty", test_char_pq_empty);
+    addTestFunction(ts_pq, "int_pq", test_int_pq);
+    // TODO test char_pq
+    runTestSuite(ts_pq, argc, argv);
+    displayTestSuite(ts_pq);
+    deleteTestSuite(ts_pq);
 
     TestSuite *ts_ll = createTestSuite("LINKED_LIST");
     addTestFunction(ts_ll, "ll_empty", test_ll_empty);
