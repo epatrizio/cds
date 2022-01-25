@@ -9,9 +9,9 @@ int main()
 {
     intl_component intl = intl_create();
 
-    intl = intl_load_locale_file(intl, "example/en.txt", "en");
-    intl = intl_load_locale_file(intl, "example/fr.txt", "fr");
-    intl = intl_load_locale_file(intl, "example/it.txt", "it");
+    intl = intl_load_locale_file(intl, "examples/intl/en.txt", "en");
+    intl = intl_load_locale_file(intl, "examples/intl/fr.txt", "fr");
+    intl = intl_load_locale_file(intl, "examples/intl/it.txt", "it");
 
     char user_locale[5], user_key[50], user_stop[5];
     bool stop = false;

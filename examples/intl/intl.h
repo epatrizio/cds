@@ -7,9 +7,9 @@ The HashMap data structure is used for a little/naive i18n component.
 
 #define DEFAULT_LOCALE "en"
 
-#include "../src/vector.h"
-#include "../src/hash_utils.h"
-#include "../src/hash_map.h"
+#include "../../src/vector.h"
+#include "../../src/hash_utils.h"
+#include "../../src/hash_map.h"
 
 typedef hash_map intl_component;
 

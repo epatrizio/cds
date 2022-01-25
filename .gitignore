@@ -1,6 +1,7 @@
 cds
 cds_test
 intl
+!intl/
 /tests/lib/
 
 # vsc

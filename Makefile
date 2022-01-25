@@ -9,6 +9,6 @@ compile_test:
 	tests/tests_utils.c tests/tests_hash_set.c tests/tests_hash_map.c tests/main.c												\
 	-lm -L./tests/lib -lctestfmk
 
-compile_example:
+compile_example_intl:
 	gcc -g -o intl -Wall -Wextra	\
-	src/vector.c src/hash_utils.c src/hash_map.c example/intl.c example/main.c
+	src/vector.c src/hash_utils.c src/hash_map.c examples/intl/intl.c examples/intl/main.c
