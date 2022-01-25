@@ -15,7 +15,7 @@ so heap can be implemented with a vector (array).
     void T##_priority_queue_destroy(T##_priority_queue);        \
     bool T##_priority_queue_is_empty(T##_priority_queue);       \
     void T##_priority_queue_push(T##_priority_queue, const T);  \
-    T T##_priority_queue_pop(T##_stack);
+    T T##_priority_queue_pop(T##_priority_queue);
 
 #define priority_queue_init(T)      \
     priority_queue_struct(T)        \
