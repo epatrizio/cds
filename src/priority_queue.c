@@ -23,8 +23,14 @@
         return T##_vector_is_empty(pq);                     \
     }
 
-// The data structure is managed as a heap.
-// So, insertion at the end (pq->size), and after, move up (comparaison with parent).
+/*
+Heap implemented by a vector
+ - Root elt: idx = 0
+ - Left elt: 2*idx+1
+ - Right elt: 2*idx+2
+ - Parent elt: (idx-1)/2
+*/
+// Insertion at the end (pq->size). After, move up (comparaison with parent).
 #define priority_queue_push_fct(T)                                      \
     void T##_priority_queue_push(T##_priority_queue pq, const T elt)    \
     {                                                                   \
@@ -40,7 +46,7 @@
         T##_vector_set(pq, i, elt);                                     \
     }
 
-// TODO Doc aritmetic 2*i+1 ...
+// Root comes out (root = min elt = max priority). After, move down from the root the last elt.
 #define priority_queue_pop_fct(T)                   \
     T T##_priority_queue_pop(T##_priority_queue pq) \
     {                                               \

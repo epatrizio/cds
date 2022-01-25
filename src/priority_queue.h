@@ -1,7 +1,11 @@
 #ifndef PRIORITY_QUEUE_H
 #define PRIORITY_QUEUE_H
 
-// TODO DOC : Priority queue / heap / why vector
+/*
+Basically, priority queue should be implemented by a BST (Binary Search Tree).
+But, heap structure is good enough, and, by construction, heap tree is almost perfect
+so heap can be implemented with a vector (array).
+*/
 
 #define priority_queue_struct(T)    \
     typedef T##_vector T##_priority_queue;
