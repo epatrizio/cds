@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
     TestSuite *ts_pq = createTestSuite("PRIORITY_QUEUE");
     addTestFunction(ts_pq, "char_pq_empty", test_char_pq_empty);
     addTestFunction(ts_pq, "int_pq", test_int_pq);
-    // TODO test char_pq
+    addTestFunction(ts_pq, "char_pq", test_char_pq);
     runTestSuite(ts_pq, argc, argv);
     displayTestSuite(ts_pq);
     deleteTestSuite(ts_pq);

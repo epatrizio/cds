@@ -48,3 +48,30 @@ void test_int_pq(const void *function_node)
 
     int_priority_queue_destroy(pq);
 }
+
+void test_char_pq(const void *function_node)
+{
+    char_priority_queue pq = char_priority_queue_create();
+
+    char_priority_queue_push(pq, 'z');
+    char_priority_queue_push(pq, 'b');
+    char_priority_queue_push(pq, 'r');
+    char_priority_queue_push(pq, 'T');
+    char_priority_queue_push(pq, '2');
+    char_priority_queue_push(pq, 'W');
+    char_priority_queue_push(pq, '+');
+
+    assert_false(char_priority_queue_is_empty(pq), function_node);
+
+    assert_equals_char('+', char_priority_queue_pop(pq),function_node);
+    assert_equals_char('2', char_priority_queue_pop(pq),function_node);
+    assert_equals_char('T', char_priority_queue_pop(pq),function_node);
+    assert_equals_char('W', char_priority_queue_pop(pq),function_node);
+    assert_equals_char('b', char_priority_queue_pop(pq),function_node);
+    assert_equals_char('r', char_priority_queue_pop(pq),function_node);
+    assert_equals_char('z', char_priority_queue_pop(pq),function_node);
+
+    assert_true(char_priority_queue_is_empty(pq), function_node);
+
+    char_priority_queue_destroy(pq);
+}
