@@ -25,6 +25,12 @@ My implementation is a doubly linked list allowing easy access to first and last
 Queue is the FIFO (First In First Out) data structure.\
 The queue implementation is based on Linked List.
 
+## PriorityQueue
+
+Basically, priority queues are equivalent to queues except that when an element is pushed inside, it does not stay at the end but is positioned according to its priority. The pop element is the same.
+The priority is the '<' operator.\
+The queue implementation is based on Vecotr.
+
 ## HashSet
 
 Very quickly, a hash table enables to store elements by applying before a hash function to each element. This subject represent a complete computer science topic! [Learn more](https://en.wikipedia.org/wiki/Hash_table).
