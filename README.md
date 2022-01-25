@@ -51,7 +51,10 @@ Implementations are inspired by this [blog post](https://www.journaldev.com/3523
 Execute "make compile_test" and that's all!\
 I use the framework [ctestfmk](https://github.com/epatrizio/ctestfmk). Read the documentation for more informations.
 
-## Example
+## Examples
 
-In /example directory, you can find a complete application of HashMap data structure:\
+* In /examples/intl directory, there is a complete application of HashMap data structure:\
 A little internationalization component.
+
+* In /examples/sort directory, there is a classic and easy application of priority queue data structure:\
+The array heap sort. For simplicity, only the int type has been processed.

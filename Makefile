@@ -12,3 +12,7 @@ compile_test:
 compile_example_intl:
 	gcc -g -o intl -Wall -Wextra	\
 	src/vector.c src/hash_utils.c src/hash_map.c examples/intl/intl.c examples/intl/main.c
+
+compile_example_sort:
+	gcc -g -o sort -Wall -Wextra	\
+	src/vector.c src/priority_queue.c examples/sort/main.c
