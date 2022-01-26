@@ -9,6 +9,7 @@
 #include "tests_queue.h"
 #include "tests_hash_set.h"
 #include "tests_hash_map.h"
+#include "tests_graph.h"
 
 int main(int argc, char *argv[])
 {
@@ -66,6 +67,12 @@ int main(int argc, char *argv[])
     runTestSuite(ts_hm, argc, argv);
     displayTestSuite(ts_hm);
     deleteTestSuite(ts_hm);
+
+    TestSuite *ts_g = createTestSuite("GRAPH");
+    addTestFunction(ts_g, "graph", test_graph);
+    runTestSuite(ts_g, argc, argv);
+    displayTestSuite(ts_g);
+    deleteTestSuite(ts_g);
 
     return EXIT_SUCCESS;
 }

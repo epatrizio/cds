@@ -46,6 +46,13 @@ The HashMap implementation is based on multiple Vectors (On for the hash table, 
 
 Implementations are inspired by this [blog post](https://www.journaldev.com/35238/hash-table-in-c-plus-plus) and this another [blog post](https://benhoyt.com/writings/hash-table-in-c/).
 
+## Graph
+
+Graphs are classic data structures used, for example, in navigation systems components.
+Graphs are more complex structures than the previous ones, which can be seen as trees generalization composed of vertices and edges. [Learn more](https://en.wikipedia.org/wiki/Graph_(abstract_data_type)).\
+My implementation should be seen as a simple discovery.
+It based on a new development of a specific hash map that uses hash set.
+
 ## Run tests
 
 Execute "make compile_test" and that's all!\
