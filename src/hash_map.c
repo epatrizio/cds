@@ -92,7 +92,7 @@ hash_map hash_map_add(hash_map hm, const char *key, const char *value, size_t (*
         hm_elt elt = hm_elt_vector_get(b, i);
         if (strcmp(key, elt.key) == 0) {
             hm_elt_vector_remove(b, i);
-            continue;
+            break;
         }
     }
 
