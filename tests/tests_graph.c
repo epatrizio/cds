@@ -63,3 +63,30 @@ void test_graph(const void *function_node)
 
     graph_destroy(g);
 }
+
+void test_graph_dfs(const void *function_node)
+{
+    graph g = graph_create(0);
+
+    g = graph_add_vertex(g, "A", HASH_CODE_FCT_CALL);
+    g = graph_add_vertex(g, "B", HASH_CODE_FCT_CALL);
+    g = graph_add_vertex(g, "C", HASH_CODE_FCT_CALL);
+    g = graph_add_vertex(g, "D", HASH_CODE_FCT_CALL);
+    g = graph_add_vertex(g, "E", HASH_CODE_FCT_CALL);
+
+    graph_add_edge(g, "A", "B", HASH_CODE_FCT_CALL);
+    graph_add_edge(g, "B", "C", HASH_CODE_FCT_CALL);
+    graph_add_edge(g, "B", "E", HASH_CODE_FCT_CALL);
+    graph_add_edge(g, "C", "D", HASH_CODE_FCT_CALL);
+
+    assert_true(graph_exists_path(g, "A", "B", HASH_CODE_FCT_CALL), function_node);
+    assert_true(graph_exists_path(g, "A", "D", HASH_CODE_FCT_CALL), function_node);
+    assert_true(graph_exists_path(g, "A", "E", HASH_CODE_FCT_CALL), function_node);
+    assert_true(graph_exists_path(g, "B", "E", HASH_CODE_FCT_CALL), function_node);
+    assert_false(graph_exists_path(g, "B", "A", HASH_CODE_FCT_CALL), function_node);
+    assert_false(graph_exists_path(g, "C", "E", HASH_CODE_FCT_CALL), function_node);
+    assert_false(graph_exists_path(g, "E", "A", HASH_CODE_FCT_CALL), function_node);
+    assert_false(graph_exists_path(g, "E", "B", HASH_CODE_FCT_CALL), function_node);
+
+    graph_destroy(g);
+}

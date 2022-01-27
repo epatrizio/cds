@@ -9,6 +9,22 @@
 #include "hash_set.h"
 #include "graph.h"
 
+hash_set visited_vertices;
+
+hash_set get_successors(graph g, const char *vertex, size_t (*hash_fct)(const char *str))
+{
+    graph_bucket b = graph_bucket_vector_get(g, hash_code_modulo(vertex, graph_bucket_vector_size(g), *hash_fct));
+
+    for (unsigned int i=0 ; i<graph_elt_vector_size(b) ; i++) {
+        graph_elt elt = graph_elt_vector_get(b, i);
+        if (strcmp(vertex, elt.vertex) == 0) {
+            return elt.successors;
+        }
+    }
+
+    return NULL;
+}
+
 graph resize_graph(graph g, size_t (*hash_fct)(const char *str))
 {
     graph new_g = graph_create(graph_bucket_vector_size(g)*2);
@@ -155,6 +171,33 @@ bool graph_remove_vertex(graph g, const char *vertex, size_t (*hash_fct)(const c
         }
     }
     return false;
+}
+
+// DFS : Depth-First Search
+void graph_dfs(graph g, const char *vertex, size_t (*hash_fct)(const char *str))
+{
+    hash_set successors = get_successors(g, vertex, *hash_fct);
+    if (successors == NULL) return;
+
+    if (hash_set_contains(visited_vertices, vertex, *hash_fct)) return;
+
+    hash_set_add(visited_vertices, vertex, *hash_fct);
+
+    for (unsigned int i=0 ; i<hs_bucket_vector_size(successors) ; i++) {
+        hs_bucket b = hs_bucket_vector_get(successors, i);
+        for (unsigned int j=0 ; j<hs_elt_vector_size(b) ; j++) {
+            hs_elt elt = hs_elt_vector_get(b, j);
+            graph_dfs(g, elt.string, *hash_fct);
+        }
+    }
+}
+
+bool graph_exists_path(graph g, const char *vertex_s, const char *vertex_t, size_t (*hash_fct)(const char *str))
+{
+    if (visited_vertices != NULL) hash_set_destroy(visited_vertices);
+    visited_vertices = hash_set_create(0);
+    graph_dfs(g, vertex_s, *hash_fct);
+    return hash_set_contains(visited_vertices, vertex_t, *hash_fct);
 }
 
 vector_init_fct(graph_elt)

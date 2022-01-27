@@ -7,5 +7,6 @@
 #include "../src/graph.h"
 
 void test_graph(const void*);
+void test_graph_dfs(const void*);
 
 #endif
