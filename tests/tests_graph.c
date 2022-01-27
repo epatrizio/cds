@@ -6,7 +6,7 @@
 
 void test_graph(const void *function_node)
 {
-    graph g = graph_create(0);
+    graph g = graph_create(2);  // 2 > force resize
 
     g = graph_add_vertex(g, "A", HASH_CODE_FCT_CALL);
     g = graph_add_vertex(g, "B", HASH_CODE_FCT_CALL);
@@ -17,10 +17,14 @@ void test_graph(const void *function_node)
     graph_add_edge(g, "A", "B", HASH_CODE_FCT_CALL);
     graph_add_edge(g, "A", "C", HASH_CODE_FCT_CALL);
 
+    g = graph_add_vertex(g, "E", HASH_CODE_FCT_CALL);   // Resize after add edge!    
+
+    // Check add vertices and edges
     assert_true(graph_has_edge(g, "A", "B", HASH_CODE_FCT_CALL), function_node);
     assert_true(graph_has_edge(g, "A", "C", HASH_CODE_FCT_CALL), function_node);
     assert_false(graph_has_edge(g, "A", "D", HASH_CODE_FCT_CALL), function_node);
 
+    // Check remove edges    
     assert_false(graph_remove_edge(g, "A", "D", HASH_CODE_FCT_CALL), function_node);
     assert_true(graph_remove_edge(g, "A", "C", HASH_CODE_FCT_CALL), function_node);
 
@@ -28,13 +32,34 @@ void test_graph(const void *function_node)
     assert_false(graph_has_edge(g, "A", "C", HASH_CODE_FCT_CALL), function_node);
     assert_false(graph_has_edge(g, "A", "D", HASH_CODE_FCT_CALL), function_node);
 
+    // When add a already existing vertex, everything starts again from beginning (remove all edges)
     g = graph_add_vertex(g, "A", HASH_CODE_FCT_CALL);
 
     assert_false(graph_has_edge(g, "A", "B", HASH_CODE_FCT_CALL), function_node);
     assert_false(graph_has_edge(g, "A", "C", HASH_CODE_FCT_CALL), function_node);
     assert_false(graph_has_edge(g, "A", "D", HASH_CODE_FCT_CALL), function_node);
 
+    // check remove vertex
+    graph_add_edge(g, "A", "B", HASH_CODE_FCT_CALL);
+    graph_add_edge(g, "A", "C", HASH_CODE_FCT_CALL);
+    graph_add_edge(g, "B", "A", HASH_CODE_FCT_CALL);
+    graph_add_edge(g, "B", "C", HASH_CODE_FCT_CALL);
+    graph_add_edge(g, "B", "D", HASH_CODE_FCT_CALL);
+
+    assert_true(graph_has_edge(g, "A", "B", HASH_CODE_FCT_CALL), function_node);
+    assert_true(graph_has_edge(g, "A", "C", HASH_CODE_FCT_CALL), function_node);
+    assert_true(graph_has_edge(g, "B", "A", HASH_CODE_FCT_CALL), function_node);
+    assert_true(graph_has_edge(g, "B", "C", HASH_CODE_FCT_CALL), function_node);
+    assert_true(graph_has_edge(g, "B", "D", HASH_CODE_FCT_CALL), function_node);
+
+    assert_false(graph_remove_vertex(g, "Z", HASH_CODE_FCT_CALL), function_node);
     assert_true(graph_remove_vertex(g, "A", HASH_CODE_FCT_CALL), function_node);
+
+    assert_false(graph_has_edge(g, "A", "B", HASH_CODE_FCT_CALL), function_node);
+    assert_false(graph_has_edge(g, "A", "C", HASH_CODE_FCT_CALL), function_node);
+    assert_false(graph_has_edge(g, "B", "A", HASH_CODE_FCT_CALL), function_node);
+    assert_true(graph_has_edge(g, "B", "C", HASH_CODE_FCT_CALL), function_node);
+    assert_true(graph_has_edge(g, "B", "D", HASH_CODE_FCT_CALL), function_node);
 
     graph_destroy(g);
 }

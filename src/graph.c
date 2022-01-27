@@ -9,7 +9,6 @@
 #include "hash_set.h"
 #include "graph.h"
 
-// TODO : tests
 graph resize_graph(graph g, size_t (*hash_fct)(const char *str))
 {
     graph new_g = graph_create(graph_bucket_vector_size(g)*2);
@@ -18,12 +17,14 @@ graph resize_graph(graph g, size_t (*hash_fct)(const char *str))
         graph_bucket b = graph_bucket_vector_get(g, i);
         for (unsigned int j=0 ; j<graph_elt_vector_size(b) ; j++) {
             graph_elt elt = graph_elt_vector_get(b, j);
-            new_g = graph_add_vertex(new_g, elt.vertex, *hash_fct);
-            // TODO elt.successors reconstruct/or get
+            graph_bucket new_b = graph_bucket_vector_get(new_g, hash_code_modulo(elt.vertex, graph_bucket_vector_size(new_g), *hash_fct));
+            // We keep the origin elt. So we don't call graph_destroy.
+            graph_elt_vector_add(new_b, graph_elt_vector_size(new_b), elt);
         }
+        graph_elt_vector_destroy(b);
     }
 
-    graph_destroy(g);
+    graph_bucket_vector_destroy(g);
 
     return new_g;
 }
@@ -47,8 +48,7 @@ void graph_destroy(graph g)
         for (unsigned int j=0 ; j<graph_elt_vector_size(b) ; j++) {
             graph_elt elt = graph_elt_vector_get(b, j);
             free(elt.vertex);
-            hash_set_destroy(elt.successors); // check ...
-            //free(elt.successors);
+            hash_set_destroy(elt.successors);
         }
         graph_elt_vector_destroy(b);
     }
@@ -67,11 +67,11 @@ graph graph_add_vertex(graph g, const char *vertex, size_t (*hash_fct)(const cha
 
     for (unsigned int i=0 ; i<graph_elt_vector_size(b) ; i++) {
         graph_elt elt = graph_elt_vector_get(b, i);
-        if (strcmp(vertex, elt.vertex) == 0) {  // check hash_table (fix?)
+        if (strcmp(vertex, elt.vertex) == 0) {
             free(elt.vertex);
             hash_set_destroy(elt.successors);
             graph_elt_vector_remove(b, i);
-            break;   // check, before continue;
+            break;
         }
     }
 
@@ -133,16 +133,24 @@ bool graph_remove_edge(graph g, const char *vertex_s, const char *vertex_t, size
     return false;
 }
 
-// in progress > tests ... +: remove in edges
 bool graph_remove_vertex(graph g, const char *vertex, size_t (*hash_fct)(const char *str))
 {
+    // 0. Remove vertex in edges
+    for (unsigned int i=0 ; i<graph_bucket_vector_size(g) ; i++) {
+        graph_bucket b = graph_bucket_vector_get(g, i);
+        for (unsigned int j=0 ; j<graph_elt_vector_size(b) ; j++) {
+            graph_elt elt = graph_elt_vector_get(b, j);
+            hash_set_remove(elt.successors, vertex, *hash_fct);
+        }
+    }
+
     graph_bucket b = graph_bucket_vector_get(g, hash_code_modulo(vertex, graph_bucket_vector_size(g), *hash_fct));
     for (unsigned int i=0 ; i<graph_elt_vector_size(b) ; i++) {
         graph_elt elt = graph_elt_vector_get(b, i);
         if (strcmp(vertex, elt.vertex) == 0) {
-            //free(elt.vertex);
-            //hash_set_destroy(elt.successors);
-            graph_bucket_vector_set(g, i, graph_elt_vector_create());
+            free(elt.vertex);
+            hash_set_destroy(elt.successors);
+            graph_elt_vector_remove(b, i);
             return true;
         }
     }
