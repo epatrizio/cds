@@ -31,6 +31,8 @@ bool graph_has_edge(graph, const char*, const char*, size_t (*hash_fct)(const ch
 bool graph_remove_edge(graph, const char*, const char*, size_t (*hash_fct)(const char*));
 bool graph_remove_vertex(graph, const char*, size_t (*hash_fct)(const char*));
 void graph_dfs(graph, const char*, size_t (*hash_fct)(const char*));
-bool graph_exists_path(graph, const char*, const char*, size_t (*hash_fct)(const char*));
+bool graph_dfs_exists_path(graph, const char*, const char*, size_t (*hash_fct)(const char*));
+void graph_bfs(graph, const char*, size_t (*hash_fct)(const char*));
+bool graph_bfs_exists_path(graph, const char*, const char*, size_t (*hash_fct)(const char*));
 
 #endif

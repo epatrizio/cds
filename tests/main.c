@@ -71,6 +71,7 @@ int main(int argc, char *argv[])
     TestSuite *ts_g = createTestSuite("GRAPH");
     addTestFunction(ts_g, "graph", test_graph);
     addTestFunction(ts_g, "graph_dfs", test_graph_dfs);
+    addTestFunction(ts_g, "graph_bfs", test_graph_bfs);
     runTestSuite(ts_g, argc, argv);
     displayTestSuite(ts_g);
     deleteTestSuite(ts_g);

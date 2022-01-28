@@ -5,6 +5,8 @@
 #include <string.h>
 
 #include "vector.h"
+#include "linked_list.h"
+#include "queue.h"
 #include "hash_utils.h"
 #include "hash_set.h"
 #include "graph.h"
@@ -176,12 +178,12 @@ bool graph_remove_vertex(graph g, const char *vertex, size_t (*hash_fct)(const c
 // DFS : Depth-First Search
 void graph_dfs(graph g, const char *vertex, size_t (*hash_fct)(const char *str))
 {
-    hash_set successors = get_successors(g, vertex, *hash_fct);
-    if (successors == NULL) return;
-
     if (hash_set_contains(visited_vertices, vertex, *hash_fct)) return;
 
     hash_set_add(visited_vertices, vertex, *hash_fct);
+
+    hash_set successors = get_successors(g, vertex, *hash_fct);
+    if (successors == NULL) return;
 
     for (unsigned int i=0 ; i<hs_bucket_vector_size(successors) ; i++) {
         hs_bucket b = hs_bucket_vector_get(successors, i);
@@ -192,11 +194,44 @@ void graph_dfs(graph g, const char *vertex, size_t (*hash_fct)(const char *str))
     }
 }
 
-bool graph_exists_path(graph g, const char *vertex_s, const char *vertex_t, size_t (*hash_fct)(const char *str))
+bool graph_dfs_exists_path(graph g, const char *vertex_s, const char *vertex_t, size_t (*hash_fct)(const char *str))
 {
     if (visited_vertices != NULL) hash_set_destroy(visited_vertices);
     visited_vertices = hash_set_create(0);
     graph_dfs(g, vertex_s, *hash_fct);
+    return hash_set_contains(visited_vertices, vertex_t, *hash_fct);
+}
+
+// BFS : Breadth-First Search
+void graph_bfs(graph g, const char *vertex, size_t (*hash_fct)(const char *str))
+{
+    queue q = queue_create();
+    queue_push(q, vertex);
+
+    hash_set_add(visited_vertices, vertex, *hash_fct);
+
+    while (!queue_is_empty(q)) {
+        char *ver = queue_pop(q);
+        hash_set successors = get_successors(g, ver, *hash_fct);
+        if (successors == NULL) continue;
+        for (unsigned int i=0 ; i<hs_bucket_vector_size(successors) ; i++) {
+            hs_bucket b = hs_bucket_vector_get(successors, i);
+            for (unsigned int j=0 ; j<hs_elt_vector_size(b) ; j++) {
+                hs_elt elt = hs_elt_vector_get(b, j);
+                if (!hash_set_contains(visited_vertices, elt.string, *hash_fct)) {
+                    queue_push(q, elt.string);
+                    hash_set_add(visited_vertices, elt.string, *hash_fct);
+                }
+            }
+        }
+    }
+}
+
+bool graph_bfs_exists_path(graph g, const char *vertex_s, const char *vertex_t, size_t (*hash_fct)(const char *str))
+{
+    if (visited_vertices != NULL) hash_set_destroy(visited_vertices);
+    visited_vertices = hash_set_create(0);
+    graph_bfs(g, vertex_s, *hash_fct);
     return hash_set_contains(visited_vertices, vertex_t, *hash_fct);
 }
 

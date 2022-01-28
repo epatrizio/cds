@@ -8,5 +8,6 @@
 
 void test_graph(const void*);
 void test_graph_dfs(const void*);
+void test_graph_bfs(const void*);
 
 #endif
