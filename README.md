@@ -53,6 +53,14 @@ Graphs are more complex structures than the previous ones, which can be seen as 
 My implementation should be seen as a simple discovery.
 It based on a new development of a specific hash map that uses hash set.
 
+* [Depth-first search](https://en.wikipedia.org/wiki/Depth-first_search): Graph traversing algorithm
+to easily answer the question "existence of a path between 2 verticies"
+
+* [Breadth-first search](https://en.wikipedia.org/wiki/Breadth-first_search): Another graph traversing algorithm but more complex to answer questions "shortest path in edge number", "edge number between 2 verticies", etc.
+
+* [Dijkstra's algorithm](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm): Another graph algorithm for finding the shortest path between 2 vertices using a distance associated with each edge.\
+*Not implemented*
+
 ## Run tests
 
 Execute "make compile_test" and that's all!\
