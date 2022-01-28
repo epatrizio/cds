@@ -17,3 +17,7 @@ compile_example_intl:
 compile_example_sort:
 	gcc -g -o sort -Wall -Wextra	\
 	src/vector.c src/priority_queue.c examples/sort/main.c
+
+compile_example_dot:
+	gcc -g -o dot -Wall -Wextra	\
+	src/vector.c src/linked_list.c src/queue.c src/hash_utils.c src/hash_set.c src/graph.c examples/dot/main.c

@@ -5,6 +5,9 @@ intl
 sort
 !sort/
 /tests/lib/
+dot
+!dot/
+*.dot
 
 # vsc
 /.vscode

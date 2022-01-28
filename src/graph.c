@@ -235,5 +235,37 @@ bool graph_bfs_exists_path(graph g, const char *vertex_s, const char *vertex_t, 
     return hash_set_contains(visited_vertices, vertex_t, *hash_fct);
 }
 
+void graph_dot(graph g)
+{
+    FILE *file = fopen("graph.dot", "w");
+    if (file == NULL) {
+      perror("File open error: ");
+      return;
+    }
+
+    fprintf(file, "digraph {\n");
+    // Graph vector loop (for verticies)
+    for (unsigned int i=0 ; i<graph_bucket_vector_size(g) ; i++) {
+        graph_bucket b = graph_bucket_vector_get(g, i);
+        for (unsigned int j=0 ; j<graph_elt_vector_size(b) ; j++) {
+            graph_elt elt = graph_elt_vector_get(b, j);
+            if (elt.successors == NULL) continue;
+            // Successors loop (for one vertex)
+            for (unsigned int k=0 ; k<hs_bucket_vector_size(elt.successors) ; k++) {
+                hs_bucket bs = hs_bucket_vector_get(elt.successors, k);
+                for (unsigned int l=0 ; l<hs_elt_vector_size(bs) ; l++) {
+                    hs_elt elt_s = hs_elt_vector_get(bs, l);
+                    fprintf(file, "%s -> %s\n", elt.vertex, elt_s.string);
+                }
+            }
+        }
+    }
+    fprintf(file, "}\n");
+
+    fclose(file);
+
+    return;
+}
+
 vector_init_fct(graph_elt)
 vector_init_fct(graph_bucket)
