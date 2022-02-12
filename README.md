@@ -73,3 +73,13 @@ A little internationalization component.
 
 * In /examples/sort directory, there is a classic and easy application of priority queue data structure:\
 The array heap sort. For simplicity, only the int type has been processed.
+
+### Makefile
+
+In Makefile, you will find :
+
+* Compilation commands (project, tests, examples)
+
+* Lib creation : according to the data structures that you will import in your project,
+adjust the command with the correct .c and .h files.\
+Watch out for dependencies! For example, vectors are the basis of everything else.

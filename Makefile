@@ -21,3 +21,16 @@ compile_example_sort:
 compile_example_dot:
 	gcc -g -o dot -Wall -Wextra	\
 	src/vector.c src/linked_list.c src/queue.c src/hash_utils.c src/hash_set.c src/graph.c examples/dot/main.c
+
+clean:
+	rm -rf *.dot *.o cds_test intl sort dot
+
+# Adjust src/*.c list to compile according to the data structures to be used elsewhere
+libcds_static:
+	mkdir -p lib
+	gcc -c -Wall -Wextra src/vector.c
+	mv vector.o lib/vector.o
+	cp src/vector.h lib/vector.h
+	ar -rc lib/libvector.a lib/*.o
+	ranlib lib/libvector.a
+	rm lib/*.o

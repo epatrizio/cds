@@ -8,6 +8,7 @@ sort
 dot
 !dot/
 *.dot
+/lib/
 
 # vsc
 /.vscode
