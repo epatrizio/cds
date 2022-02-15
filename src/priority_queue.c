@@ -8,7 +8,7 @@
 
 #define priority_queue_create_fct(T)                    \
     T##_priority_queue T##_priority_queue_create() {    \
-        return T##_vector_create();                     \
+        return T##_vector_create(0);                    \
     }
 
 #define priority_queue_destroy_fct(T)                       \

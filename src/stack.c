@@ -5,9 +5,9 @@
 #include "vector.h"
 #include "stack.h"
 
-#define stack_create_fct(T)         \
-    T##_stack T##_stack_create() {  \
-        return T##_vector_create(); \
+#define stack_create_fct(T)             \
+    T##_stack T##_stack_create() {      \
+        return T##_vector_create(0);    \
     }
 
 #define stack_destroy_fct(T)                \

@@ -49,12 +49,12 @@ graph resize_graph(graph g, size_t (*hash_fct)(const char *str))
 
 graph graph_create(size_t initial_size)
 {
-    graph g = graph_bucket_vector_create();
+    graph g = graph_bucket_vector_create(0);
 
     graph_bucket_vector_resize(g, (initial_size>0) ? initial_size : GRAPH_INITIAL_SIZE);
 
     for (unsigned int i=0 ; i<graph_bucket_vector_size(g) ; i++)
-        graph_bucket_vector_set(g, i, graph_elt_vector_create());
+        graph_bucket_vector_set(g, i, graph_elt_vector_create(0));
 
     return g;
 }

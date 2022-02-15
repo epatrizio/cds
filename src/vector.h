@@ -14,7 +14,7 @@
     typedef struct T##_resizable_array *T##_vector;
 
 #define vector_create_sign(T)                           \
-    T##_vector T##_vector_create();                     \
+    T##_vector T##_vector_create(size_t);               \
     void T##_vector_destroy(T##_vector);                \
     size_t T##_vector_size(T##_vector);                 \
     bool T##_vector_is_empty(T##_vector);               \
@@ -29,13 +29,14 @@
     vector_struct(T)        \
     vector_create_sign(T)
 
-#define vector_create_fct(T)                        \
-    T##_vector T##_vector_create() {                \
-        T##_vector v = malloc(sizeof(T##_vector));  \
-        v->elts = malloc(MIN_CAPACITY * sizeof(T)); \
-        v->capacity = MIN_CAPACITY;                 \
-        v->size = 0;                                \
-        return v;                                   \
+#define vector_create_fct(T)                                    \
+    T##_vector T##_vector_create(size_t capacity) {             \
+        size_t cap = (capacity > 0) ? capacity : MIN_CAPACITY;  \
+        T##_vector v = malloc(sizeof(T##_vector));              \
+        v->elts = malloc(cap * sizeof(T));                      \
+        v->capacity = cap;                                      \
+        v->size = 0;                                            \
+        return v;                                               \
     }
 
 #define vector_destroy_fct(T)               \

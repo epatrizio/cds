@@ -28,12 +28,12 @@ hash_set resize_hash_set(hash_set hs, size_t (*hash_fct)(const char *str))
 
 hash_set hash_set_create(size_t initial_size)
 {
-    hash_set hs = hs_bucket_vector_create();
+    hash_set hs = hs_bucket_vector_create(0);
 
     hs_bucket_vector_resize(hs, (initial_size>0) ? initial_size : HASH_SET_INITIAL_SIZE);
 
     for (unsigned int i=0 ; i<hs_bucket_vector_size(hs) ; i++)
-        hs_bucket_vector_set(hs, i, hs_elt_vector_create());
+        hs_bucket_vector_set(hs, i, hs_elt_vector_create(0));
 
     return hs;
 }

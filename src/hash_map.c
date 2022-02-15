@@ -27,12 +27,12 @@ hash_map resize_hash_map(hash_map hm, size_t (*hash_fct)(const char *str))
 
 hash_map hash_map_create(size_t initial_size)
 {
-    hash_map hm = hm_bucket_vector_create();
+    hash_map hm = hm_bucket_vector_create(0);
 
     hm_bucket_vector_resize(hm, (initial_size>0) ? initial_size : HASH_MAP_INITIAL_SIZE);
 
     for (unsigned int i=0 ; i<hm_bucket_vector_size(hm) ; i++)
-        hm_bucket_vector_set(hm, i, hm_elt_vector_create());
+        hm_bucket_vector_set(hm, i, hm_elt_vector_create(0));
 
     return hm;
 }

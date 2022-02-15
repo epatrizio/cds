@@ -6,7 +6,7 @@
 
 void test_char_vector_empty(const void *function_node)
 {
-    char_vector v = char_vector_create();
+    char_vector v = char_vector_create(0);
 
     assert_true(char_vector_is_empty(v), function_node);
     assert_equals_int(MIN_CAPACITY, v->capacity, function_node);
@@ -15,9 +15,20 @@ void test_char_vector_empty(const void *function_node)
     char_vector_destroy(v);
 }
 
+void test_short_vector_initial_capacity(const void *function_node)
+{
+    short_vector v = short_vector_create(42);
+
+    assert_true(short_vector_is_empty(v), function_node);
+    assert_equals_int(42, v->capacity, function_node);
+    assert_equals_int(0, short_vector_size(v), function_node);
+
+    short_vector_destroy(v);
+}
+
 void test_double_vector_resize(const void *function_node)
 {
-    double_vector v = double_vector_create();
+    double_vector v = double_vector_create(0);
 
     assert_true(double_vector_is_empty(v), function_node);
     assert_equals_int(MIN_CAPACITY, v->capacity, function_node);
@@ -46,7 +57,7 @@ void test_double_vector_resize(const void *function_node)
 
 void test_int_vector(const void *function_node)
 {
-    int_vector v = int_vector_create();
+    int_vector v = int_vector_create(0);
     int_vector_add(v, 0, 0);
     int_vector_add(v, 1, 10);
 
@@ -98,7 +109,7 @@ vector_init_fct(custom_struct)
 
 void test_custom_struct_vector(const void *function_node)
 {
-    custom_struct_vector v = custom_struct_vector_create();
+    custom_struct_vector v = custom_struct_vector_create(0);
 
     assert_true(custom_struct_vector_is_empty(v), function_node);
     assert_equals_int(MIN_CAPACITY, v->capacity, function_node);

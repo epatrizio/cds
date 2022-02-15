@@ -15,6 +15,7 @@ int main(int argc, char *argv[])
 {
     TestSuite *ts_vector = createTestSuite("VECTOR");
     addTestFunction(ts_vector, "char_vector_empty", test_char_vector_empty);
+    addTestFunction(ts_vector, "short_vector_initial_capacity", test_short_vector_initial_capacity);
     addTestFunction(ts_vector, "double_vector_resize", test_double_vector_resize);
     addTestFunction(ts_vector, "int_vector", test_int_vector);
     runTestSuite(ts_vector, argc, argv);
