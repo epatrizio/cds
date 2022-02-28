@@ -7,7 +7,7 @@
 
 linked_list linked_list_create()
 {
-    linked_list empty_ll = malloc(sizeof(linked_list));
+    linked_list empty_ll = malloc(sizeof(struct _linked_list));
     empty_ll->first = NULL;
     empty_ll->last = NULL;
     empty_ll->size = 0;
