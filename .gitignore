@@ -9,6 +9,8 @@ dot
 !dot/
 *.dot
 /lib/
+threads
+!threads/
 
 # vsc
 /.vscode

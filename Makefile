@@ -28,8 +28,12 @@ compile_example_dot:
 	gcc -g -o dot -Wall -Wextra	\
 	src/vector.c src/linked_list.c src/queue.c src/hash_utils.c src/hash_set.c src/graph.c examples/dot/main.c
 
+compile_example_threads:
+	gcc -g -o threads -Wall -Wextra	\
+	src/linked_list.c src/queue.c examples/threads/vqueue.c examples/threads/main.c
+
 clean:
-	rm -rf *.dot *.o cds_test intl sort dot
+	rm -rf *.dot *.o cds_test intl sort dot threads
 
 # Adjust src/*.c list to compile according to the data structures to be used elsewhere
 libcds_static:
