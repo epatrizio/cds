@@ -34,3 +34,16 @@ char* vqueue_pop(vegetables_queue vq)
     else
         return NULL;
 }
+
+vegetables_producer vproducer_create(const char* vname)
+{
+    vegetables_producer vp = malloc(sizeof(vegetables_producer));
+    vp->vname = vname;
+    vp->current_production = 0;
+    return vp;
+}
+
+void vproducer_destroy(vegetables_producer vp)
+{
+    free(vp);
+}
