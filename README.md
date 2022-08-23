@@ -68,6 +68,9 @@ I use the framework [ctestfmk](https://github.com/epatrizio/ctestfmk). Read the 
 
 ## Examples
 
+* In /examples/dot directory, there is a simple example of a .dot file generation of a graph.\
+Learn more about .dot file, produced by [Graphviz](https://graphviz.org), an open source graph visualization software.
+
 * In /examples/intl directory, there is a complete application of HashMap data structure:\
 A little internationalization component.
 
