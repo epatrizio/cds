@@ -20,6 +20,9 @@ typedef struct _vegetables_producer {
     unsigned short int current_production;
 } *vegetables_producer;
 
+void mutex_init();
+void mutex_destroy();
+
 vegetables_queue vqueue_create();
 void vqueue_destroy(vegetables_queue);
 void vqueue_push(vegetables_queue, const char*);
@@ -27,5 +30,6 @@ char* vqueue_pop(vegetables_queue);
 
 vegetables_producer vproducer_create(const char*);
 void vproducer_destroy(vegetables_producer);
+void vproducer_push_vegetables(vegetables_producer, vegetables_queue);
 
 #endif

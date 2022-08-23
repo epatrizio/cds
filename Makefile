@@ -29,7 +29,7 @@ compile_example_dot:
 	src/vector.c src/linked_list.c src/queue.c src/hash_utils.c src/hash_set.c src/graph.c examples/dot/main.c
 
 compile_example_threads:
-	gcc -g -o threads -Wall -Wextra	\
+	gcc -g -pthread -o threads -Wall -Wextra	\
 	src/linked_list.c src/queue.c examples/threads/vqueue.c examples/threads/main.c
 
 clean:
