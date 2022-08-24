@@ -52,12 +52,13 @@ char* vqueue_pop(vegetables_queue vq)
 {
     pthread_mutex_lock(&mutex);
 
-    vq->size--;
-    char *veg = queue_pop(vq->vqueue);
     if (vq->size > 0)
         pthread_cond_signal(&cond);
     else
         pthread_cond_wait(&cond, &mutex);
+
+    vq->size--;
+    char *veg = queue_pop(vq->vqueue);
 
     pthread_mutex_unlock(&mutex);
 
@@ -88,5 +89,32 @@ void vproducer_push_vegetables(vegetables_producer vp, vegetables_queue vq)
         strcpy(tmp_vname, vp->vname);
         strcat(tmp_vname, tmp_prod);
         vqueue_push(vq, tmp_vname);
+    }
+}
+
+vegetables_consumer vconsumer_create(const char* cname)
+{
+    vegetables_consumer vc = malloc(sizeof(vegetables_consumer));
+    vc->cname = cname;
+    vc->current_consumption = 0;
+    return vc;
+}
+
+void vconsumer_destroy(vegetables_consumer vc)
+{
+    free(vc);
+}
+
+void vconsumer_pop_vegetables(vegetables_consumer vc, vegetables_queue vq)
+{
+    char tmp_veg_cons[20];
+
+    while (vc->current_consumption < VCONSUMER_NEED) {
+        vc->current_consumption++;
+        char *veg = vqueue_pop(vq);
+        strcpy(tmp_veg_cons, vc->cname);
+        strcat(tmp_veg_cons, " >> ");
+        strcat(tmp_veg_cons, veg);
+        printf("%s\n", tmp_veg_cons);
     }
 }
