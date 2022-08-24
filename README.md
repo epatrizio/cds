@@ -77,6 +77,31 @@ A little internationalization component.
 * In /examples/sort directory, there is a classic and easy application of priority queue data structure:\
 The array heap sort. For simplicity, only the int type has been processed.
 
+* In /examples/threads directory, there is a particular example with two objectives :
+    1. Another concrete example of using data structures (here, a queue)
+    2. An educational simple example of using threads.\
+    Here is the purpose : there are vegetable producers who deposit their production in a queue\
+    and consumers who serve themselves in this same queue. Producers and consumers work independently.\
+        * everyone works in their own thread\
+        * waiting conditions are related to production capacity, queue size and consumer needs\
+        * in our example, we have 3 producers (apple, pear, banana) and 2 consumers (C1, C2)
+        * here is an output example, the result is not deterministic!! (interleaving, scheduler)
+
+        ```console
+        C2 >> apple1
+        C1 >> apple2
+        C2 >> pear1
+        C1 >> apple3
+        C2 >> apple4
+        C2 >> apple5
+        C1 >> apple6
+        C2 >> pear2
+        C1 >> banana1
+        C1 >> pear3
+        ```
+
+    Learn more about [POSIX Threads](https://en.wikipedia.org/wiki/Pthreads).
+
 ### Makefile
 
 In Makefile, you will find :
