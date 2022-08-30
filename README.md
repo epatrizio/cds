@@ -100,7 +100,8 @@ The array heap sort. For simplicity, only the int type has been processed.
         C1 >> pear3
         ```
 
-    Learn more about [POSIX Threads](https://en.wikipedia.org/wiki/Pthreads).
+    Learn more about [POSIX Threads](https://en.wikipedia.org/wiki/Pthreads).\
+    Additional information in my [threads programminig pedagogical experiments](https://github.com/epatrizio/experiments).
 
 ### Makefile
 
